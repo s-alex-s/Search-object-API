@@ -19,9 +19,8 @@ response = requests.get(geocoder_api_server, params=geocoder_params)
 json_response = response.json()
 toponym = json_response["response"]["GeoObjectCollection"]["featureMember"][0]["GeoObject"]
 toponym_spn = toponym['boundedBy']['Envelope']
-toponym_coodrinates = toponym["Point"]["pos"]
-toponym_longitude, toponym_lattitude = toponym_coodrinates.split(" ")
-
+toponym_coordinates = toponym["Point"]["pos"]
+toponym_longitude, toponym_lattitude = toponym_coordinates.split(" ")
 
 delta = get_spn(toponym_spn)
 map_params = {
@@ -34,5 +33,4 @@ map_params = {
 map_api_server = "http://static-maps.yandex.ru/1.x/"
 response = requests.get(map_api_server, params=map_params)
 
-Image.open(BytesIO(
-    response.content)).show()
+Image.open(BytesIO(response.content)).show()
