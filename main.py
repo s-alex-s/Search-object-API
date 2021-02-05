@@ -16,8 +16,7 @@ geocoder_params = {
 response = requests.get(geocoder_api_server, params=geocoder_params)
 
 json_response = response.json()
-toponym = json_response["response"]["GeoObjectCollection"][
-    "featureMember"][0]["GeoObject"]
+toponym = json_response["response"]["GeoObjectCollection"]["featureMember"][0]["GeoObject"]
 toponym_spn = toponym['boundedBy']['Envelope']
 toponym_coodrinates = toponym["Point"]["pos"]
 toponym_longitude, toponym_lattitude = toponym_coodrinates.split(" ")
